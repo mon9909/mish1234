@@ -1,0 +1,462 @@
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111820">
+<title>Advisory & Investment | Clarity Before Capital</title>
+<style>
+:root {
+  --bg: #111820;
+  --bg2: #19232d;
+  --panel: #202c37;
+  --cream: #e9e5dc;
+  --text: #f3f0e9;
+  --muted: #b3bdc4;
+  --gold: #bd9967;
+  --line: #394550;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Tahoma, sans-serif;
+  line-height: 1.8;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+.container { width: min(1160px, 90%); margin: auto; }
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(17,24,32,.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+.nav {
+  min-height: 82px; display: flex;
+  align-items: center; justify-content: space-between;
+  gap: 20px;
+}
+.logo { font: bold 23px Georgia,serif; letter-spacing: 2px; }
+.logo small {
+  display: block; color: var(--gold);
+  font: 10px Arial,sans-serif; letter-spacing: 3px;
+}
+nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+nav a { font-size: 13px; color: var(--muted); }
+nav a:hover { color: var(--gold); }
+.lang {
+  background: transparent; color: var(--gold);
+  border: 1px solid var(--gold); padding: 8px 13px; cursor: pointer;
+}
+.btn {
+  display: inline-block; padding: 12px 22px;
+  background: var(--gold); color: #151b20;
+  border: 1px solid var(--gold); cursor: pointer;
+  font-weight: bold;
+}
+.btn:hover { background: #d2b58c; }
+.btn-outline {
+  display: inline-block; padding: 12px 22px;
+  border: 1px solid #82909a; color: var(--text);
+  margin-inline-start: 8px;
+}
+.hero {
+  min-height: 620px; display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(90deg,rgba(12,18,24,.97),rgba(18,29,38,.78)),
+    radial-gradient(ellipse at 75% 40%,#53636b 0%,#263640 30%,#111820 75%);
+}
+.hero:after {
+  content: ""; position: absolute; width: 420px; height: 520px;
+  border: 1px solid rgba(189,153,103,.35);
+  transform: rotate(28deg); inset-inline-end: 10%; top: 100px;
+  box-shadow: 0 0 0 35px rgba(189,153,103,.04),
+              0 0 0 80px rgba(189,153,103,.03);
+}
+.hero-content { max-width: 760px; padding: 100px 0; position: relative; z-index: 1; }
+.eyebrow {
+  color: var(--gold); font-size: 12px;
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+h1,h2,h3 { font-family: Georgia,"Times New Roman",serif; line-height: 1.3; font-weight: normal; }
+h1 { font-size: clamp(42px,6vw,76px); margin-bottom: 24px; }
+.hero p { max-width: 650px; color: #d1d8dc; font-size: 17px; margin-bottom: 30px; }
+section { padding: 95px 0; }
+.section-head { max-width: 730px; margin-bottom: 42px; }
+.section-head h2 { font-size: clamp(32px,4vw,47px); margin-bottom: 18px; }
+.section-head p, .muted { color: var(--muted); }
+.about-grid,.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 55px; align-items: center;
+}
+.panel { background: var(--panel); border: 1px solid var(--line); padding: 36px; }
+.panel h3 { font-size: 28px; margin-bottom: 14px; }
+.services { background: #151e27; }
+.cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.card {
+  background: var(--bg2); padding: 28px;
+  border: 1px solid var(--line); min-height: 225px;
+  transition: .2s;
+}
+.card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.num { color: var(--gold); font-size: 12px; letter-spacing: 2px; margin-bottom: 22px; }
+.card h3 { font-size: 24px; margin-bottom: 12px; }
+.card p { color: var(--muted); font-size: 14px; }
+.steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 18px; }
+.step { border-top: 2px solid var(--gold); padding-top: 20px; }
+.step h3 { margin: 12px 0; font-size: 21px; }
+.step p { font-size: 13px; color: var(--muted); }
+.sectors { background: var(--panel); }
+.sector-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0 30px; }
+.sector { padding: 19px 0; border-bottom: 1px solid var(--line); }
+.sector span { color: var(--gold); margin-inline-end: 12px; }
+.statement {
+  background: linear-gradient(120deg,#26343e,#17212a);
+  border: 1px solid var(--line); padding: 48px;
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 35px; align-items: center;
+}
+.statement h2 { font-size: 36px; }
+.statement p { color: var(--muted); }
+.contact { background: #151e27; }
+.contact-grid { align-items: start; }
+.contact-copy h2 { font-size: 43px; margin-bottom: 20px; }
+form { background: var(--bg2); padding: 30px; border: 1px solid var(--line); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.full { grid-column: 1/-1; }
+label { font-size: 13px; color: var(--muted); }
+input,select,textarea {
+  background: #111820; color: var(--text);
+  border: 1px solid var(--line); padding: 12px; width: 100%;
+  border-radius: 0;
+}
+textarea { min-height: 120px; resize: vertical; }
+form .btn { width: 100%; margin-top: 20px; }
+#form-message { color: var(--muted); font-size: 13px; margin-top: 12px; }
+footer { background: #0c1218; padding: 32px 0; border-top: 1px solid var(--line); }
+.footer-top { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+footer p { color: var(--muted); font-size: 12px; }
+.disclaimer { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; }
+[dir="rtl"] { text-align: right; }
+[dir="rtl"] .hero:after { transform: rotate(-28deg); }
+[dir="rtl"] .eyebrow { letter-spacing: 1px; }
+@media(max-width:850px) {
+  .nav { padding: 16px 0; align-items: flex-start; flex-direction: column; }
+  nav { gap: 13px; }
+  .about-grid,.contact-grid,.statement { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: repeat(2,1fr); }
+  .steps { grid-template-columns: repeat(2,1fr); gap: 25px; }
+  .sector-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:540px) {
+  section { padding: 65px 0; }
+  .cards,.steps,.sector-grid,.form-grid { grid-template-columns: 1fr; }
+  .hero { min-height: 550px; }
+  .hero:after { inset-inline-end: -260px; }
+  .panel,form,.statement { padding: 24px; }
+  .btn-outline { margin-top: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">
+      YOUR FIRM
+      <small data-i18n="brand">ADVISORY & INVESTMENT</small>
+    </a>
+    <nav>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#approach" data-i18n="navApproach">Our Approach</a>
+      <a href="#sectors" data-i18n="navSectors">Sectors</a>
+      <a href="#contact" data-i18n="navContact">Submit a Request</a>
+      <button class="lang" id="langBtn" type="button">العربية</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <div class="eyebrow" data-i18n="eyebrow">Independent Advisory · Strategic Perspective</div>
+    <h1 data-i18n="heroTitle">Clarity Before Capital.</h1>
+    <p data-i18n="heroText">We advise investors and businesses through strategic insight, disciplined risk assessment, and trusted expertise.</p>
+    <a href="#services" class="btn" data-i18n="explore">Explore Our Services</a>
+    <a href="#approach" class="btn-outline" data-i18n="how">How We Work</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="who">Who We Are</div>
+      <h2 data-i18n="aboutTitle">Deep expertise. Long-term vision.</h2>
+      <p data-i18n="aboutText">Sound decisions begin with understanding the environment, challenging assumptions, and examining what lies beneath the opportunity.</p>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="philosophy">Insight. Discipline. Long-term value.</h3>
+      <p class="muted" data-i18n="aboutPanel">We support investors and businesses in evaluating opportunities, understanding uncertainty, and making informed strategic decisions. Our approach combines structured analysis with relevant expertise and a long-term perspective.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="what">What We Do</div>
+      <h2 data-i18n="servicesTitle">Advice built around the decisions that matter.</h2>
+      <p data-i18n="servicesIntro">Focused advisory services to help clients assess opportunities, understand uncertainty, and make informed decisions.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="num">01</div><h3 data-i18n="s1">Investment Advisory</h3><p data-i18n="d1">Opportunity evaluation, investment screening, strategic assessment, and decision support.</p></article>
+      <article class="card"><div class="num">02</div><h3 data-i18n="s2">Risk Assessment</h3><p data-i18n="d2">Assessment of market, regulatory, financial, operational, and partner-related risks.</p></article>
+      <article class="card"><div class="num">03</div><h3 data-i18n="s3">Market Entry Advisory</h3><p data-i18n="d3">Market assessment, entry options, stakeholder mapping, and practical considerations.</p></article>
+      <article class="card"><div class="num">04</div><h3 data-i18n="s4">Strategic Advisory</h3><p data-i18n="d4">Strategic positioning, scenario analysis, growth options, and complex decision support.</p></article>
+      <article class="card"><div class="num">05</div><h3 data-i18n="s5">Local Expert Network</h3><p data-i18n="d5">Connecting projects with relevant economists, researchers, industry specialists, and local experts.</p></article>
+      <article class="card"><div class="num">06</div><h3 data-i18n="s6">Opportunity Review</h3><p data-i18n="d6">Structured review of assumptions, counterparties, business fundamentals, and key decision factors.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="method">Our Method</div>
+      <h2 data-i18n="methodTitle">We look beyond the obvious.</h2>
+      <p data-i18n="methodIntro">A disciplined process that moves from understanding a question to building a clear basis for a decision.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><h3 data-i18n="step1">Understand</h3><p data-i18n="stepd1">Define the objective, context, and decision.</p></div>
+      <div class="step"><div class="num">02</div><h3 data-i18n="step2">Challenge</h3><p data-i18n="stepd2">Test assumptions and identify blind spots.</p></div>
+      <div class="step"><div class="num">03</div><h3 data-i18n="step3">Assess</h3><p data-i18n="stepd3">Examine opportunities, risks, and scenarios.</p></div>
+      <div class="step"><div class="num">04</div><h3 data-i18n="step4">Advise</h3><p data-i18n="stepd4">Translate findings into clear options.</p></div>
+      <div class="step"><div class="num">05</div><h3 data-i18n="step5">Build</h3><p data-i18n="stepd5">Support lasting relationships and execution.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sectors" id="sectors">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="sectorEyebrow">Sector Expertise</div>
+      <h2 data-i18n="sectorTitle">Relevant knowledge for different industries.</h2>
+      <p data-i18n="sectorIntro">We shape project teams around the sector, question, and expertise each assignment requires.</p>
+    </div>
+    <div class="sector-grid">
+      <div class="sector"><span>01</span><b data-i18n="sector1">Real Estate</b></div>
+      <div class="sector"><span>02</span><b data-i18n="sector2">Energy & Utilities</b></div>
+      <div class="sector"><span>03</span><b data-i18n="sector3">Technology</b></div>
+      <div class="sector"><span>04</span><b data-i18n="sector4">Healthcare</b></div>
+      <div class="sector"><span>05</span><b data-i18n="sector5">Tourism & Hospitality</b></div>
+      <div class="sector"><span>06</span><b data-i18n="sector6">Logistics & Industry</b></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container statement">
+    <div>
+      <div class="eyebrow" data-i18n="perspective">Our Perspective</div>
+      <h2 data-i18n="statementTitle">Before asking why to invest, ask what could go wrong.</h2>
+    </div>
+    <p data-i18n="statementText">Strong decisions require more than an attractive opportunity. They require a clear understanding of assumptions, constraints, uncertainties, and the conditions needed for success.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <div class="eyebrow" data-i18n="start">Start a Conversation</div>
+      <h2 data-i18n="contactTitle">Tell us what you are considering.</h2>
+      <p class="muted" data-i18n="contactText">Submit an inquiry or outline a project requirement. We will review the information and determine appropriate next steps.</p>
+      <p style="margin-top:20px;color:var(--gold)" data-i18n="location">Riyadh, Saudi Arabia</p>
+      <p class="muted" data-i18n="privacyNote">Please avoid including confidential information in this initial form.</p>
+    </div>
+
+    <form id="requestForm">
+      <div class="form-grid">
+        <div class="field"><label for="name" data-i18n="nameLabel">Full Name *</label><input id="name" name="name" required></div>
+        <div class="field"><label for="company" data-i18n="companyLabel">Company</label><input id="company" name="company"></div>
+        <div class="field"><label for="email" data-i18n="emailLabel">Business Email *</label><input id="email" name="email" type="email" required></div>
+        <div class="field"><label for="requestType" data-i18n="typeLabel">Request Type *</label>
+          <select id="requestType" name="requestType" required>
+            <option value="" data-i18n="choose">Choose an option</option>
+            <option data-i18n="s1">Investment Advisory</option>
+            <option data-i18n="s2">Risk Assessment</option>
+            <option data-i18n="s3">Market Entry Advisory</option>
+            <option data-i18n="s4">Strategic Advisory</option>
+            <option data-i18n="s5">Local Expert Network</option>
+            <option data-i18n="other">Other Inquiry</option>
+          </select>
+        </div>
+        <div class="field full"><label for="sectorSelect" data-i18n="sectorLabel">Sector</label>
+          <select id="sectorSelect" name="sector">
+            <option value="" data-i18n="sectorChoose">Choose a sector</option>
+            <option data-i18n="sector1">Real Estate</option>
+            <option data-i18n="sector2">Energy & Utilities</option>
+            <option data-i18n="sector3">Technology</option>
+            <option data-i18n="sector4">Healthcare</option>
+            <option data-i18n="sector5">Tourism & Hospitality</option>
+            <option data-i18n="sector6">Logistics & Industry</option>
+            <option data-i18n="other">Other</option>
+          </select>
+        </div>
+        <div class="field full"><label for="message" data-i18n="messageLabel">How can we help? *</label><textarea id="message" name="message" required></textarea></div>
+      </div>
+      <button class="btn" type="submit" data-i18n="submit">Submit Request</button>
+      <p id="form-message" role="status" data-i18n="formNote">Demo form: connect a form service to receive submissions.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <a class="logo" href="#home">YOUR FIRM<small data-i18n="brand">ADVISORY & INVESTMENT</small></a>
+      <a href="#contact" data-i18n="footerRequest">Submit a Request ↗</a>
+    </div>
+    <div class="disclaimer">
+      <p data-i18n="disclaimer">This website is for general informational purposes only and does not constitute an offer or personalized investment advice. Services are subject to applicable laws, regulatory requirements, and any required licensing.</p>
+      <p style="margin-top:12px">© <span id="year"></span> YOUR FIRM. <span data-i18n="rights">All rights reserved.</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const translations = {
+  en: {
+    brand:"ADVISORY & INVESTMENT",navAbout:"About",navServices:"Services",
+    navApproach:"Our Approach",navSectors:"Sectors",navContact:"Submit a Request",
+    eyebrow:"Independent Advisory · Strategic Perspective",
+    heroTitle:"Clarity Before Capital.",
+    heroText:"We advise investors and businesses through strategic insight, disciplined risk assessment, and trusted expertise.",
+    explore:"Explore Our Services",how:"How We Work",who:"Who We Are",
+    aboutTitle:"Deep expertise. Long-term vision.",
+    aboutText:"Sound decisions begin with understanding the environment, challenging assumptions, and examining what lies beneath the opportunity.",
+    philosophy:"Insight. Discipline. Long-term value.",
+    aboutPanel:"We support investors and businesses in evaluating opportunities, understanding uncertainty, and making informed strategic decisions. Our approach combines structured analysis with relevant expertise and a long-term perspective.",
+    what:"What We Do",servicesTitle:"Advice built around the decisions that matter.",
+    servicesIntro:"Focused advisory services to help clients assess opportunities, understand uncertainty, and make informed decisions.",
+    s1:"Investment Advisory",d1:"Opportunity evaluation, investment screening, strategic assessment, and decision support.",
+    s2:"Risk Assessment",d2:"Assessment of market, regulatory, financial, operational, and partner-related risks.",
+    s3:"Market Entry Advisory",d3:"Market assessment, entry options, stakeholder mapping, and practical considerations.",
+    s4:"Strategic Advisory",d4:"Strategic positioning, scenario analysis, growth options, and complex decision support.",
+    s5:"Local Expert Network",d5:"Connecting projects with relevant economists, researchers, industry specialists, and local experts.",
+    s6:"Opportunity Review",d6:"Structured review of assumptions, counterparties, business fundamentals, and key decision factors.",
+    method:"Our Method",methodTitle:"We look beyond the obvious.",
+    methodIntro:"A disciplined process that moves from understanding a question to building a clear basis for a decision.",
+    step1:"Understand",stepd1:"Define the objective, context, and decision.",
+    step2:"Challenge",stepd2:"Test assumptions and identify blind spots.",
+    step3:"Assess",stepd3:"Examine opportunities, risks, and scenarios.",
+    step4:"Advise",stepd4:"Translate findings into clear options.",
+    step5:"Build",stepd5:"Support lasting relationships and execution.",
+    sectorEyebrow:"Sector Expertise",sectorTitle:"Relevant knowledge for different industries.",
+    sectorIntro:"We shape project teams around the sector, question, and expertise each assignment requires.",
+    sector1:"Real Estate",sector2:"Energy & Utilities",sector3:"Technology",
+    sector4:"Healthcare",sector5:"Tourism & Hospitality",sector6:"Logistics & Industry",
+    perspective:"Our Perspective",
+    statementTitle:"Before asking why to invest, ask what could go wrong.",
+    statementText:"Strong decisions require more than an attractive opportunity. They require a clear understanding of assumptions, constraints, uncertainties, and the conditions needed for success.",
+    start:"Start a Conversation",contactTitle:"Tell us what you are considering.",
+    contactText:"Submit an inquiry or outline a project requirement. We will review the information and determine appropriate next steps.",
+    location:"Riyadh, Saudi Arabia",privacyNote:"Please avoid including confidential information in this initial form.",
+    nameLabel:"Full Name *",companyLabel:"Company",emailLabel:"Business Email *",
+    typeLabel:"Request Type *",choose:"Choose an option",other:"Other Inquiry",
+    sectorLabel:"Sector",sectorChoose:"Choose a sector",messageLabel:"How can we help? *",
+    submit:"Submit Request",formNote:"Demo form: connect a form service to receive submissions.",
+    footerRequest:"Submit a Request ↗",
+    disclaimer:"This website is for general informational purposes only and does not constitute an offer or personalized investment advice. Services are subject to applicable laws, regulatory requirements, and any required licensing.",
+    rights:"All rights reserved."
+  },
+  ar: {
+    brand:"الاستشارات والاستثمار",navAbout:"من نحن",navServices:"خدماتنا",
+    navApproach:"منهجيتنا",navSectors:"القطاعات",navContact:"تقديم طلب",
+    eyebrow:"استشارات مستقلة · رؤية استراتيجية",
+    heroTitle:"الوضوح يسبق الاستثمار.",
+    heroText:"نقدم الاستشارات للمستثمرين والشركات من خلال الرؤية الاستراتيجية، والتقييم المنهجي للمخاطر، والاستعانة بالخبرات الموثوقة.",
+    explore:"اكتشف خدماتنا",how:"كيف نعمل",who:"من نحن",
+    aboutTitle:"خبرة عميقة. ورؤية طويلة المدى.",
+    aboutText:"تبدأ القرارات السليمة بفهم البيئة، واختبار الافتراضات، والنظر إلى ما وراء الفرص الظاهرة.",
+    philosophy:"رؤية. انضباط. قيمة مستدامة.",
+    aboutPanel:"ندعم المستثمرين والشركات في تقييم الفرص وفهم أوجه عدم اليقين واتخاذ القرارات الاستراتيجية المدروسة. تجمع منهجيتنا بين التحليل المنظم والخبرة المتخصصة والنظرة طويلة المدى.",
+    what:"ماذا نقدم",servicesTitle:"استشارات تتمحور حول القرارات المهمة.",
+    servicesIntro:"خدمات استشارية تساعد على تقييم الفرص وفهم المخاطر واتخاذ قرارات مدروسة.",
+    s1:"الاستشارات الاستثمارية",d1:"تقييم الفرص، وفرز الاستثمارات، والتحليل الاستراتيجي، ودعم اتخاذ القرار.",
+    s2:"تقييم المخاطر",d2:"تقييم مخاطر السوق والتنظيم والتمويل والتشغيل والشركاء.",
+    s3:"استشارات دخول الأسواق",d3:"دراسة السوق وخيارات الدخول وأصحاب المصلحة والاعتبارات العملية.",
+    s4:"الاستشارات الاستراتيجية",d4:"التموضع الاستراتيجي وتحليل السيناريوهات وخيارات النمو ودعم القرارات المعقدة.",
+    s5:"شبكة الخبراء",d5:"ربط المشاريع بالاقتصاديين والباحثين والمتخصصين وخبراء الأسواق المناسبين.",
+    s6:"تقييم الفرص",d6:"مراجعة منظمة للافتراضات والأطراف المقابلة وأساسيات الأعمال والعوامل المؤثرة في القرار.",
+    method:"منهجيتنا",methodTitle:"ننظر إلى ما وراء الظاهر.",
+    methodIntro:"منهجية منضبطة تبدأ بفهم السؤال وتنتهي ببناء أساس واضح لاتخاذ القرار.",
+    step1:"الفهم",stepd1:"تحديد الهدف والسياق والقرار المطلوب.",
+    step2:"التحدي",stepd2:"اختبار الافتراضات وتحديد النقاط غير الواضحة.",
+    step3:"التقييم",stepd3:"دراسة الفرص والمخاطر والسيناريوهات.",
+    step4:"المشورة",stepd4:"تحويل النتائج إلى خيارات وتوصيات واضحة.",
+    step5:"البناء",stepd5:"دعم العلاقات المستدامة والتنفيذ.",
+    sectorEyebrow:"خبرات القطاعات",sectorTitle:"معرفة متخصصة في قطاعات متنوعة.",
+    sectorIntro:"نبني فرق العمل وفقًا للقطاع وطبيعة السؤال والخبرة التي يتطلبها كل مشروع.",
+    sector1:"العقارات",sector2:"الطاقة والمرافق",sector3:"التقنية",
+    sector4:"الرعاية الصحية",sector5:"السياحة والضيافة",sector6:"الخدمات اللوجستية والصناعة",
+    perspective:"رؤيتنا",
+    statementTitle:"قبل أن تسأل لماذا تستثمر، اسأل ما الذي قد يسير على نحو خاطئ.",
+    statementText:"لا تكفي جاذبية الفرصة لاتخاذ قرار قوي؛ بل يجب فهم الافتراضات والقيود ومواطن عدم اليقين والشروط اللازمة للنجاح.",
+    start:"لنبدأ الحوار",contactTitle:"أخبرنا بما تفكر فيه.",
+    contactText:"قدّم استفسارك أو وضّح متطلبات مشروعك. سنراجع المعلومات ونحدد الخطوات المناسبة.",
+    location:"الرياض، المملكة العربية السعودية",privacyNote:"يرجى عدم إدراج معلومات سرية في هذا النموذج الأولي.",
+    nameLabel:"الاسم الكامل *",companyLabel:"الشركة",emailLabel:"البريد الإلكتروني للعمل *",
+    typeLabel:"نوع الطلب *",choose:"اختر نوع الطلب",other:"استفسار آخر",
+    sectorLabel:"القطاع",sectorChoose:"اختر القطاع",messageLabel:"كيف يمكننا مساعدتك؟ *",
+    submit:"إرسال الطلب",formNote:"النموذج تجريبي؛ يجب ربطه بخدمة لاستقبال الطلبات.",
+    footerRequest:"تقديم طلب ↗",
+    disclaimer:"يُقدَّم هذا الموقع لأغراض المعلومات العامة فقط، ولا يشكل عرضًا استثماريًا أو مشورة استثمارية شخصية. تخضع الخدمات للأنظمة والمتطلبات التنظيمية والتراخيص المعمول بها.",
+    rights:"جميع الحقوق محفوظة."
+  }
+};
+
+let currentLang = "en";
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (translations[lang][key] !== undefined) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  document.getElementById("langBtn").textContent =
+    lang === "en" ? "العربية" : "English";
+}
+
+document.getElementById("langBtn").addEventListener("click", () => {
+  setLanguage(currentLang === "en" ? "ar" : "en");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("requestForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  document.getElementById("form-message").textContent =
+    currentLang === "ar"
+      ? "هذا نموذج تجريبي ولم يُرسل الطلب. يجب ربط الموقع بخدمة استقبال الطلبات."
+      : "This is a demo form. Your request has not been sent. Connect a form service before launch.";
+});
+
+setLanguage("en");
+</script>
+</body>
+</html>
+```
